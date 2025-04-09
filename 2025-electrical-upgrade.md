@@ -31,19 +31,19 @@ graph TD
   %% negativeLineColor: #0066cc
 
   %% Define nodes with descriptive identifiers and detailed labels
-  house_battery["LiTime 12V 230Ah LiFePO4<br>Deep Cycle Battery"]
+  house_battery["House Battery<br>LiTime 12V 230Ah LiFePO4"]
   main_fuse["Class T Fuse 200A<br>Overcurrent Protection"]
   disconnect_switch["Main Disconnect Switch<br>Emergency Cutoff"]
   positive_bus["Positive Bus Bar<br>Power Distribution"]
-  inverter_charger["Victron Energy MultiPlus<br>12/1200/50-16 120V<br>Inverter/Charger"]
+  inverter_charger["Inverter/Charger<br>Victron Energy MultiPlus<br>12/1200/50-16 120V"]
   windlass["Windlass<br>Anchor System"]
   dc_panel["DC Panel<br>Circuit Distribution"]
-  dc_dc_charger["Victron Orion XS Smart<br>12/12 50A (700W)<br>DC-DC Charger"]
-  house_shunt["DC SmartShunt<br>House Battery Monitor"]
+  dc_dc_charger["DC-DC Charger<br>Victron Orion XS Smart<br>12/12 50A (700W)"]
   negative_bus["Negative Bus Bar<br>Ground Return"]
   starter_battery["Starter Battery<br>12V AGM 1000 CCA"]
-  alternator["Engine Starter/<br>Alternator<br>Stock Hitachi 129772-77200 55A"]
-  starter_shunt["DC SmartShunt<br>Starter Battery Monitor"]
+  alternator["Engine Starter/Alternator<br>Hitachi 129772-77200 55A"]
+  house_shunt["DC SmartShunt<br>Victron SmartShunt IP65 300A"]
+  starter_shunt["DC SmartShunt<br>Victron SmartShunt IP65 300A"]
   
   %% Style nodes using direct color values
   style house_battery fill:#d4f1f9,stroke:#333
@@ -85,29 +85,17 @@ graph TD
   dc_dc_charger -.->|Ground| negative_bus
 
   %% Add explanatory notes
-  note_house_battery["Battery provides 12V<br>230Ah main power"]
-  note_inverter["Inverter converts 12V DC<br>to 120V AC power<br>1200W capacity"]
-  note_dc_dc["DC-DC charger safely charges<br>LiFePO4 house battery from<br>alternator with current limiting"]
-  note_house_shunt["SmartShunt monitors<br>house battery state<br>and power consumption"]
-  note_starter_battery["AGM starter battery<br>1000 Cold Cranking Amps<br>for engine ignition"]
-  note_alternator["55A alternator starts engine<br>and charges batteries<br>when running"]
-  note_starter_shunt["SmartShunt monitors<br>starter battery state<br>and charging"]
+  note_inverter["Converts 12V DC<br>to 120V AC power<br>1200W capacity"]
+  note_dc_dc["Charges LiFePO4 house <br>via alternator with current limiting"]
+  note_alternator["Charges batteries<br>when running"]
   
-  style note_house_battery fill:#fffde7,stroke:#d6d6d6
   style note_inverter fill:#fffde7,stroke:#d6d6d6
   style note_dc_dc fill:#fffde7,stroke:#d6d6d6
-  style note_house_shunt fill:#fffde7,stroke:#d6d6d6
-  style note_starter_battery fill:#fffde7,stroke:#d6d6d6
   style note_alternator fill:#fffde7,stroke:#d6d6d6
-  style note_starter_shunt fill:#fffde7,stroke:#d6d6d6
   
-  house_battery --- note_house_battery
   inverter_charger --- note_inverter
   dc_dc_charger --- note_dc_dc
-  house_shunt --- note_house_shunt
-  starter_battery --- note_starter_battery
   alternator --- note_alternator
-  starter_shunt --- note_starter_shunt
 
   %% Title with background to ensure visibility in dark mode
   title["Grace's 2025 Electrical System Upgrade<br>LiFePO4 Battery Installation"]
@@ -117,21 +105,9 @@ graph TD
   %% Styling for positive and negative connections
   linkStyle 0,1,2,3,4,5,6,7,8 stroke:#ff0000,stroke-width:2px
   linkStyle 9,10,11,12,13,14,15,16,17 stroke:#0066cc,stroke-width:2.5px,stroke-dasharray:3
-  linkStyle 18,19,20,21,22,23,24 stroke:#d6d6d6,stroke-width:1px
+  linkStyle 18,19,20 stroke:#d6d6d6,stroke-width:1px
+  linkStyle 21 stroke:#d6d6d6,stroke-width:1px
 
-  %% Color coding legend (moved to bottom and made smaller)
-  subgraph Legend["Color Legend"]
-    direction LR
-    legend_power["Power Source"] --- legend_protection["Protection"] --- legend_conversion["Conversion"] --- legend_load["Load"] --- legend_distribution["Distribution"] --- legend_monitor["Monitor/Ground"]
-    
-    style legend_power fill:#d4f1f9,stroke:#333,font-size:11px
-    style legend_protection fill:#ffe6cc,stroke:#333,font-size:11px
-    style legend_conversion fill:#d5e8d4,stroke:#333,font-size:11px
-    style legend_load fill:#e1d5e7,stroke:#333,font-size:11px
-    style legend_distribution fill:#f8cecc,stroke:#333,font-size:11px
-    style legend_monitor fill:#f5f5f5,stroke:#333,font-size:11px
-    style Legend font-size:12px,font-weight:bold
-  end
 ```
 
 ## Upgrade Motivation
@@ -170,7 +146,7 @@ The 2025 electrical system upgrade was motivated by several factors:
 - **Negative Bus Bar**: Common ground return for all components
 
 ### Power Conversion
-- **Victron Energy MultiPlus Pure Sine Wave Inverter Charger, UL-Certified, 12/1200/50-16 120V VE.Bus**: Inverter/charger converting 12V DC to 120V AC (1200W)
+- **Victron Energy MultiPlus Pure Sine Wave Inverter Charger, UL-Certified, 12/1200/50-16 120V VE.Bus**: Inverter/charger converting 12V DC to 120V AC (1000W)
   - Provides 120V AC power from the house battery
   - Charges the house battery when connected to shore power
   - 50A charging capability
