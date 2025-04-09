@@ -69,6 +69,12 @@ Reference guide for marine electrical wiring, including:
 Technical datasheets for system components:
 - [Victron Energy MultiPlus Inverter/Charger](./specs/MultiPlus-500-1200VA-120V-EN.pdf)
 - [Victron Energy SmartShunt Battery Monitor](./specs/SmartShunt-IP65-EN.pdf)
+- [Victron Energy Orion XS DC-DC Charger](./specs/Orion-XS-DC-DC-battery-charger-EN.pdf)
+
+### [Component Manuals](./manuals/)
+Detailed manuals for system components:
+- [Victron Energy MultiPlus Inverter/Charger](./manuals/MultiPlus_500-1200VA_120Vac-manual.pdf)
+- [Victron Energy Orion XS DC-DC Charger](./manuals/Orion_XS_DC-DC_battery_charger-manual.pdf)
 
 ## Key Improvements
 

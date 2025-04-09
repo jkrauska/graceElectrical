@@ -152,11 +152,14 @@ The 2025 electrical system upgrade was motivated by several factors:
   - 50A charging capability
   - Cost (April 2025): $480
   - [Specifications datasheet](./specs/MultiPlus-500-1200VA-120V-EN.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-500-1200VA-120V-EN.pdf))
+  - [Full manual](./manuals/MultiPlus_500-1200VA_120Vac-manual.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/MultiPlus_12V_500-1200VA_120Vac/155314-MultiPlus_500-1200VA_120Vac-pdf-en.pdf))
   - 1200VA model chosen over 2000VA to avoid requiring larger wiring while still providing sufficient capacity for onboard needs
 
 - **Victron Orion XS Smart 12/12 50A (700W)**: DC-DC charger that safely charges the LiFePO4 house battery from the alternator with current limiting protection
   - Protects lithium battery from alternator voltage spikes
   - Provides proper charging profile for lithium chemistry
+  - [Specifications datasheet](./specs/Orion-XS-DC-DC-battery-charger-EN.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Datasheet-Orion-XS-DC-DC-battery-charger-EN-.pdf))
+  - [Full manual](./manuals/Orion_XS_DC-DC_battery_charger-manual.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Orion_XS_12-12-50A_DC-DC_battery_charger/124067-Orion_XS_DC-DC_battery_charger-pdf-en.pdf))
 
 ### Monitoring
 - **Victron Energy SmartShunt IP65 Battery Monitor (Bluetooth) - 6.5V-70V, 300 amp (House Battery)**: Monitors house battery state and power consumption
