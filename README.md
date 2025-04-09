@@ -65,6 +65,11 @@ Reference guide for marine electrical wiring, including:
 - Length and temperature adjustments
 - ABYC standards and practical tips
 
+### [Component Specifications](./specs/)
+Technical datasheets for system components:
+- [Victron Energy MultiPlus Inverter/Charger](./specs/MultiPlus-500-1200VA-120V-EN.pdf)
+- [Victron Energy SmartShunt Battery Monitor](./specs/SmartShunt-IP65-EN.pdf)
+
 ## Key Improvements
 
 The 2025 electrical system upgrade delivered several significant improvements:

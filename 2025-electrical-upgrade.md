@@ -71,7 +71,7 @@ graph TD
   %% Starter battery and alternator connections
   alternator -->|AWG ?| starter_battery
   starter_battery -->|AWG ?| dc_dc_charger
-  dc_dc_charger -->|AWG ?| house_battery
+  dc_dc_charger -->|AWG ?| positive_bus
   
   %% Ground connections (dotted lines in blue for better visibility)
   house_battery -.->|Ground| house_shunt
@@ -175,7 +175,7 @@ The 2025 electrical system upgrade was motivated by several factors:
   - Charges the house battery when connected to shore power
   - 50A charging capability
   - Cost (April 2025): $480
-  - [Specifications datasheet](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-500-1200VA-120V-EN.pdf)
+  - [Specifications datasheet](./specs/MultiPlus-500-1200VA-120V-EN.pdf)
   - 1200VA model chosen over 2000VA to avoid requiring larger wiring while still providing sufficient capacity for onboard needs
 
 - **Victron Orion XS Smart 12/12 50A (700W)**: DC-DC charger that safely charges the LiFePO4 house battery from the alternator with current limiting protection
@@ -189,7 +189,7 @@ The 2025 electrical system upgrade was motivated by several factors:
   - Provides historical data
   - Bluetooth connectivity for monitoring via smartphone app
   - Cost (April 2025): $72
-  - [Specifications datasheet](https://www.victronenergy.com/upload/documents/Datasheet-SmartShunt-IP65-EN-.pdf)
+  - [Specifications datasheet](./specs/SmartShunt-IP65-EN.pdf)
 
 - **Victron Energy SmartShunt IP65 Battery Monitor (Bluetooth) - 6.5V-70V, 300 amp (Starter Battery)**: Monitors starter battery state and charging
   - Cost (April 2025): $72
