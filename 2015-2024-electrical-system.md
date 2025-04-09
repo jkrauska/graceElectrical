@@ -1,10 +1,10 @@
-# Grace's 2024 Electrical System
+# Grace's 2015-2024 Electrical System
 
-This document details the electrical system configuration used on Grace prior to the 2025 lithium battery upgrade.
+This document details the electrical system configuration used on Grace from 2015 to 2024, prior to the 2025 lithium battery upgrade.
 
 ## System Overview
 
-The 2024 electrical system utilized traditional AGM (Absorbed Glass Mat) batteries in a dual-battery configuration with basic charging and distribution components.
+The 2015-2024 electrical system utilized traditional AGM (Absorbed Glass Mat) batteries in a dual-battery configuration with basic charging and distribution components.
 
 ```mermaid
 %%{init: {
@@ -71,7 +71,7 @@ graph TD
   charger --- note_charger
 
   %% Title with background
-  title["Grace's 2024 Electrical System<br>AGM Battery Configuration"]
+  title["Grace's 2015-2024 Electrical System<br>AGM Battery Configuration"]
   style title fill:#f0f0f0,stroke:#333,color:#000000,font-size:18px,font-weight:bold
   title --- house_battery
 ```
@@ -147,9 +147,8 @@ graph TD
 
 ## Maintenance Requirements
 - Regular voltage checks
-- Periodic specific gravity testing
 - Terminal cleaning to prevent corrosion
 - Careful monitoring of discharge levels to prevent damage
 
 ## Conclusion
-The 2024 electrical system provided basic functionality but had significant limitations in terms of usable capacity, monitoring capabilities, and power availability when away from shore power. These limitations led to the decision to upgrade to a lithium-based system in 2025.
+The 2015-2024 electrical system provided basic functionality but had significant limitations in terms of usable capacity, monitoring capabilities, and power availability when away from shore power. These limitations led to the decision to upgrade to a lithium-based system in 2025.

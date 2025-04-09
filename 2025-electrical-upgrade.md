@@ -62,8 +62,8 @@ graph TD
 
   %% House battery wiring flow with gauges and colors (positive connections)
   house_battery -->|2/0 AWG| main_fuse
-  main_fuse -->|2/0 AWG| disconnect_switch
-  disconnect_switch -->|2/0 AWG| positive_bus
+  main_fuse -->|"Link Bar"| disconnect_switch
+  disconnect_switch -->|"Link Bar"| positive_bus
   positive_bus -->|AWG 1| inverter_charger
   positive_bus -->|AWG ?| windlass
   positive_bus -->|AWG ?| dc_panel
@@ -175,7 +175,7 @@ The 2025 electrical system upgrade was motivated by several factors:
   - Charges the house battery when connected to shore power
   - 50A charging capability
   - Cost (April 2025): $480
-  - [Specifications datasheet](./specs/MultiPlus-500-1200VA-120V-EN.pdf)
+  - [Specifications datasheet](./specs/MultiPlus-500-1200VA-120V-EN.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-500-1200VA-120V-EN.pdf))
   - 1200VA model chosen over 2000VA to avoid requiring larger wiring while still providing sufficient capacity for onboard needs
 
 - **Victron Orion XS Smart 12/12 50A (700W)**: DC-DC charger that safely charges the LiFePO4 house battery from the alternator with current limiting protection
@@ -189,7 +189,7 @@ The 2025 electrical system upgrade was motivated by several factors:
   - Provides historical data
   - Bluetooth connectivity for monitoring via smartphone app
   - Cost (April 2025): $72
-  - [Specifications datasheet](./specs/SmartShunt-IP65-EN.pdf)
+  - [Specifications datasheet](./specs/SmartShunt-IP65-EN.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Datasheet-SmartShunt-IP65-EN-.pdf))
 
 - **Victron Energy SmartShunt IP65 Battery Monitor (Bluetooth) - 6.5V-70V, 300 amp (Starter Battery)**: Monitors starter battery state and charging
   - Cost (April 2025): $72
@@ -219,7 +219,8 @@ The 2025 electrical system upgrade was motivated by several factors:
 
 ## Wiring
 - **Positive Connections**:
-  - 2/0 AWG: House battery to fuse to disconnect to positive bus bar
+  - 2/0 AWG: House battery to fuse
+  - Link Bar: Fuse to disconnect switch to positive bus bar
   - AWG 1: Positive bus bar to inverter
   
 - **Negative/Ground Connections**:

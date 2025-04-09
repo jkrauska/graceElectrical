@@ -13,7 +13,7 @@ These upgrades significantly improve the vessel's electrical capabilities, provi
 
 ## System Overview
 
-### Previous System (2024)
+### Previous System (2015-2024)
 
 The previous electrical setup consisted of:
 - Two AGM Type 4D batteries (200Ah each) for house power
@@ -37,7 +37,7 @@ This system provides longer battery life, increased usable capacity, better moni
 
 This repository contains detailed documentation on various aspects of Grace's electrical system:
 
-### [2024 Electrical System](./2024-electrical-system.md)
+### [2015-2024 Electrical System](./2015-2024-electrical-system.md)
 Detailed documentation of the previous electrical setup with AGM batteries, including:
 - System diagram
 - Component specifications
@@ -86,7 +86,7 @@ The 2025 electrical system upgrade delivered several significant improvements:
 
 ## System Comparison
 
-| Feature | 2024 System (AGM) | 2025 System (LiFePO4) |
+| Feature | 2015-2024 System (AGM) | 2025 System (LiFePO4) |
 |---------|------------------|------------------------|
 | House Battery | Two West Marine Group 4D (198Ah each) | LiTime 12V 230Ah LiFePO4 |
 | Usable Capacity | ~99Ah (50% DoD) | ~200Ah (90% DoD) |

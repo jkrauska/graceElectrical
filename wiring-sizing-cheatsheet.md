@@ -6,19 +6,19 @@ This cheatsheet provides a reference for selecting appropriate wire sizes for 12
 
 | AWG Size | Ancor Marine Wire Cross-sectional Area (mm²) | Standard Cross-sectional Area (mm²) | Maximum Current at 12V (Amps) | Typical Applications |
 |----------|----------------------------------------------|-------------------------------------|-------------------------------|----------------------|
-| 4/0 (0000) | 120 | 107.2 | 360 | Main battery cables for very high current applications |
-| 3/0 (000) | 95 | 85.0 | 310 | Main battery cables, inverter connections |
-| 2/0 (00) | 70 | 67.4 | 265 | Battery to bus bar, large inverters |
-| 1/0 (0) | 55 | 53.5 | 220 | Battery connections, alternator output |
+| 4/0 (0000) | 103 | 107.2 | 360 | Main battery cables for very high current applications |
+| 3/0 (000) | 83 | 85.0 | 310 | Main battery cables, inverter connections |
+| 2/0 (00) | 62 | 67.4 | 265 | Battery to bus bar, large inverters |
+| 1/0 (0) | 50 | 53.5 | 220 | Battery connections, alternator output |
 | 1 | 40 | 42.4 | 170 | Inverter input, windlass |
-| 2 | 35 | 33.6 | 145 | Alternator output, large inverters |
-| 4 | 25 | 21.2 | 95 | Charging systems, bow thrusters |
-| 6 | 16 | 13.3 | 75 | Battery chargers, medium loads |
-| 8 | 10 | 8.4 | 55 | Larger appliances, pumps |
-| 10 | 6 | 5.3 | 40 | Refrigeration, water pressure pumps |
-| 12 | 4 | 3.3 | 25 | General lighting circuits, small pumps |
-| 14 | 2.5 | 2.1 | 15 | Lighting, electronics |
-| 16 | 1.5 | 1.3 | 10 | Electronics, small lights |
+| 2 | 32 | 33.6 | 145 | Alternator output, large inverters |
+| 4 | 19 | 21.2 | 95 | Charging systems, bow thrusters |
+| 6 | 13 | 13.3 | 75 | Battery chargers, medium loads |
+| 8 | 8 | 8.4 | 55 | Larger appliances, pumps |
+| 10 | 5 | 5.3 | 40 | Refrigeration, water pressure pumps |
+| 12 | 3 | 3.3 | 25 | General lighting circuits, small pumps |
+| 14 | 2 | 2.1 | 15 | Lighting, electronics |
+| 16 | 1.2 | 1.3 | 10 | Electronics, small lights |
 
 ## Voltage Drop Considerations
 
@@ -80,7 +80,9 @@ Ancor Marine Grade Primary Wire is specifically designed for marine environments
 - **UL 1426 boat cable** certified for marine applications
 - **105°C temperature rating** for engine room applications
 
-Ancor wire is available from marine supply stores and online retailers like [Amazon](https://www.amazon.com/Ancor-Marine-Grade-Primary-Battery/dp/B000NHZY8I).
+Ancor wire is available from marine supply stores and online retailers:
+- [Ancor Marine Grade Primary Wire (general)](https://www.amazon.com/Ancor-Marine-Grade-Primary-Battery/dp/B000NHZY8I)
+- [Ancor AWG 2 Wire (32mm²)](https://www.amazon.com/Ancor-Marine-Grade-Primary-Battery/dp/B000NV2FWC/ref=sr_1_1?crid=1K0BYEWA7777E&keywords=ancor+awg+2)
 
 ## Victron Energy Inverter Wiring Requirements
 
@@ -90,7 +92,7 @@ The Victron Energy MultiPlus 12/1200/50-16 120V inverter/charger has specific wi
 
 | Model | Recommended Minimum Wire Size | Ancor Marine Wire Size |
 |-------|-------------------------------|------------------------|
-| MultiPlus 12/1200/50-16 | 35mm² | AWG 2 (35mm²) |
+| MultiPlus 12/1200/50-16 | 35mm² | AWG 2 (32mm²) |
 
 ### Key Points for Inverter Installation:
 
