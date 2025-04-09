@@ -1,181 +1,93 @@
-# Marine Electrical System - 12V Battery Installation
+# Grace Electrical System Documentation
 
-This diagram illustrates a comprehensive marine electrical system with dual batteries (house and starter), showing all components, connections, and specifications.
+This repository documents the electrical system of Grace, a Catalina 320 sailboat, focusing on the 2025 upgrade from a pair of AGM batteries to modern lithium battery technology.
 
-```mermaid
-%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'primaryColor': '#ffffff',
-    'primaryTextColor': '#000000',
-    'primaryBorderColor': '#cccccc',
-    'lineColor': '#000000',
-    'secondaryColor': '#ffffff',
-    'tertiaryColor': '#ffffff'
-  }
-}}%%
-graph TD
-  %% Define color constants (for documentation, not directly used)
-  %% powerSourceColor: #d4f1f9
-  %% protectionColor: #ffe6cc
-  %% distributionColor: #f8cecc
-  %% conversionColor: #d5e8d4
-  %% loadColor: #e1d5e7
-  %% monitorColor: #f5f5f5
-  %% noteColor: #fffde7
-  %% positiveLineColor: #ff0000
-  %% negativeLineColor: #0066cc
+## Project Motivation
 
-  %% Define nodes with descriptive identifiers and detailed labels
-  house_battery["LiTime 12V 230Ah LiFePO4<br>Deep Cycle Battery"]
-  main_fuse["Class T Fuse 200A<br>Overcurrent Protection"]
-  disconnect_switch["Main Disconnect Switch<br>Emergency Cutoff"]
-  positive_bus["Positive Bus Bar<br>Power Distribution"]
-  inverter_charger["Victron Energy MultiPlus<br>12/1200/50-16 120V<br>Inverter/Charger"]
-  windlass["Windlass<br>Anchor System"]
-  dc_panel["DC Panel<br>Circuit Distribution"]
-  dc_dc_charger["Victron Orion XS Smart<br>12/12 50A (700W)<br>DC-DC Charger"]
-  house_shunt["DC SmartShunt<br>House Battery Monitor"]
-  negative_bus["Negative Bus Bar<br>Ground Return"]
-  starter_battery["Starter Battery<br>12V AGM 1000 CCA"]
-  alternator["Engine Starter/<br>Alternator<br>Stock Hitachi 129772-77200 55A"]
-  starter_shunt["DC SmartShunt<br>Starter Battery Monitor"]
-  
-  %% Style nodes using direct color values
-  style house_battery fill:#d4f1f9,stroke:#333
-  style main_fuse fill:#ffe6cc,stroke:#333
-  style disconnect_switch fill:#ffe6cc,stroke:#333
-  style positive_bus fill:#f8cecc,stroke:#333
-  style inverter_charger fill:#d5e8d4,stroke:#333
-  style windlass fill:#e1d5e7,stroke:#333
-  style dc_panel fill:#fff2cc,stroke:#333
-  style dc_dc_charger fill:#d5e8d4,stroke:#333
-  style house_shunt fill:#f5f5f5,stroke:#333
-  style negative_bus fill:#f5f5f5,stroke:#333
-  style starter_battery fill:#d4f1f9,stroke:#333
-  style alternator fill:#d4f1f9,stroke:#333
-  style starter_shunt fill:#f5f5f5,stroke:#333
+The motivation for updating Grace's electrical system was to leverage newer lithium battery technology and add monitoring systems to track battery health. The 2025 Electrical upgrade had two primary goals:
 
-  %% House battery wiring flow with gauges and colors (positive connections)
-  house_battery -->|2/0 AWG| main_fuse
-  main_fuse -->|2/0 AWG| disconnect_switch
-  disconnect_switch -->|2/0 AWG| positive_bus
-  positive_bus -->|AWG 1| inverter_charger
-  positive_bus -->|AWG ?| windlass
-  positive_bus -->|AWG ?| dc_panel
-  
-  %% Starter battery and alternator connections
-  alternator -->|AWG ?| starter_battery
-  starter_battery -->|AWG ?| dc_dc_charger
-  dc_dc_charger -->|AWG ?| house_battery
-  
-  %% Ground connections (dotted lines in blue for better visibility)
-  house_battery -.->|Ground| house_shunt
-  house_shunt -.->|Ground| negative_bus
-  starter_battery -.->|Ground| starter_shunt
-  starter_shunt -.->|Ground| negative_bus
-  alternator -.->|Ground| negative_bus
-  inverter_charger -.->|Ground| negative_bus
-  windlass -.->|Ground| negative_bus
-  dc_panel -.->|Ground| negative_bus
-  dc_dc_charger -.->|Ground| negative_bus
+1. **Move to Lithium Battery Technology**: Transition to lithium batteries for their longer life and higher capacity compared to traditional AGM batteries.
+2. **Add Inverter Capability**: Incorporate an inverter to provide low wattage AC service when off the dock.
 
-  %% Add explanatory notes
-  note_house_battery["Battery provides 12V<br>230Ah main power"]
-  note_inverter["Inverter converts 12V DC<br>to 120V AC power<br>1200W capacity"]
-  note_dc_dc["DC-DC charger safely charges<br>LiFePO4 house battery from<br>alternator with current limiting"]
-  note_house_shunt["SmartShunt monitors<br>house battery state<br>and power consumption"]
-  note_starter_battery["AGM starter battery<br>1000 Cold Cranking Amps<br>for engine ignition"]
-  note_alternator["55A alternator starts engine<br>and charges batteries<br>when running"]
-  note_starter_shunt["SmartShunt monitors<br>starter battery state<br>and charging"]
-  
-  style note_house_battery fill:#fffde7,stroke:#d6d6d6
-  style note_inverter fill:#fffde7,stroke:#d6d6d6
-  style note_dc_dc fill:#fffde7,stroke:#d6d6d6
-  style note_house_shunt fill:#fffde7,stroke:#d6d6d6
-  style note_starter_battery fill:#fffde7,stroke:#d6d6d6
-  style note_alternator fill:#fffde7,stroke:#d6d6d6
-  style note_starter_shunt fill:#fffde7,stroke:#d6d6d6
-  
-  house_battery --- note_house_battery
-  inverter_charger --- note_inverter
-  dc_dc_charger --- note_dc_dc
-  house_shunt --- note_house_shunt
-  starter_battery --- note_starter_battery
-  alternator --- note_alternator
-  starter_shunt --- note_starter_shunt
+These upgrades significantly improve the vessel's electrical capabilities, providing more usable power, better monitoring, and increased reliability for extended cruising.
 
-  %% Title with background to ensure visibility in dark mode
-  title["Marine Electrical System<br>12V Battery Installation"]
-  style title fill:#f0f0f0,stroke:#333,color:#000000,font-size:18px,font-weight:bold
-  title --- house_battery
+## System Overview
 
-  %% Styling for positive and negative connections
-  linkStyle 0,1,2,3,4,5,6,7,8 stroke:#ff0000,stroke-width:2px
-  linkStyle 9,10,11,12,13,14,15,16,17 stroke:#0066cc,stroke-width:2.5px,stroke-dasharray:3
-  linkStyle 18,19,20,21,22,23,24 stroke:#d6d6d6,stroke-width:1px
+### Previous System (2024)
 
-  %% Color coding legend (moved to bottom and made smaller)
-  subgraph Legend["Color Legend"]
-    direction LR
-    legend_power["Power Source"] --- legend_protection["Protection"] --- legend_conversion["Conversion"] --- legend_load["Load"] --- legend_distribution["Distribution"] --- legend_monitor["Monitor/Ground"]
-    
-    style legend_power fill:#d4f1f9,stroke:#333,font-size:11px
-    style legend_protection fill:#ffe6cc,stroke:#333,font-size:11px
-    style legend_conversion fill:#d5e8d4,stroke:#333,font-size:11px
-    style legend_load fill:#e1d5e7,stroke:#333,font-size:11px
-    style legend_distribution fill:#f8cecc,stroke:#333,font-size:11px
-    style legend_monitor fill:#f5f5f5,stroke:#333,font-size:11px
-    style Legend font-size:12px,font-weight:bold
-  end
-```
+The previous electrical setup consisted of:
+- Two AGM Type 4D batteries (200Ah each) for house power
+- A 1/2/Both switch for battery selection
+- A Xantrax 20a charger for shore power charging
 
-## System Components
+This system provided basic functionality but had limitations in terms of usable capacity, monitoring capabilities, and power availability when away from shore power.
 
-### Power Sources
-- **LiTime 12V 230Ah LiFePO4 Deep Cycle Battery**: Main house battery providing power to all onboard systems
-- **12V AGM 1000 CCA Starter Battery**: High cranking power battery dedicated to engine starting
-- **Stock Hitachi 129772-77200 55A Alternator**: Provides power to charge both batteries when the engine is running
+### Upgraded System (2025)
 
-### Protection Devices
-- **Class T Fuse 200A**: Overcurrent protection for the main battery
-- **Main Disconnect Switch**: Emergency cutoff for the electrical system
+The upgraded electrical system features:
+- LiTime 12V 230Ah LiFePO4 Deep Cycle Battery for house power
+- Victron Energy MultiPlus 12/1200/50-16 120V Inverter/Charger
+- Victron Orion XS Smart 12/12 50A DC-DC Charger
+- DC SmartShunt monitors for battery health tracking
+- Improved protection and distribution components
 
-### Power Distribution
-- **Positive Bus Bar**: Central distribution point for positive connections
-- **DC Panel**: Circuit distribution for various DC loads
-- **Negative Bus Bar**: Common ground return for all components
+This system provides longer battery life, increased usable capacity, better monitoring, and AC power availability when away from shore power.
 
-### Power Conversion
-- **Victron Energy MultiPlus 12/1200/50-16 120V**: Inverter/charger converting 12V DC to 120V AC (1200W)
-- **Victron Orion XS Smart 12/12 50A (700W)**: DC-DC charger that safely charges the LiFePO4 house battery from the alternator with current limiting protection
+## Documentation Structure
 
-### Monitoring
-- **DC SmartShunt (House Battery)**: Monitors house battery state and power consumption
-- **DC SmartShunt (Starter Battery)**: Monitors starter battery state and charging
+This repository contains detailed documentation on various aspects of Grace's electrical system:
 
-### Loads
-- **Windlass**: Anchor system
-- **Engine Starter**: Starts the engine (part of the alternator unit)
+### [2024 Electrical System](./2024-electrical-system.md)
+Detailed documentation of the previous electrical setup with AGM batteries, including:
+- System diagram
+- Component specifications
+- Limitations and challenges
 
-## Power Flow
+### [2025 Electrical Upgrade](./2025-electrical-upgrade.md)
+Comprehensive documentation of the upgraded electrical system with lithium batteries, including:
+- Detailed system diagram
+- Component specifications and connections
+- Power flow in different scenarios
+- Benefits of the upgrade
 
-### When Engine is Off
-- House battery powers all onboard systems through the positive bus bar
-- Inverter/charger provides 120V AC power from the house battery
+### [Battery Selection](./battery-selection.md)
+In-depth analysis of the battery selection process, including:
+- Comparison between AGM and LiFePO4 technologies
+- Selection criteria and decision process
+- Cost analysis and long-term benefits
+- Implementation considerations
 
-### When Engine is Running
-- Alternator charges the starter battery directly
-- DC-DC charger safely charges the house battery from the alternator with current limiting protection
-- Both batteries provide power to their respective systems
+## Key Improvements
 
-## Wiring
-- **Positive Connections** (Red Lines):
-  - 2/0 AWG: House battery to fuse to disconnect to positive bus bar
-  - AWG 1: Positive bus bar to inverter
-  
-- **Negative/Ground Connections** (Blue Dotted Lines):
-  - All components connect to the negative bus bar for a common ground
+The 2025 electrical system upgrade delivered several significant improvements:
 
-## Notes
-This diagram was created using Mermaid, a JavaScript-based diagramming tool that renders Markdown-inspired text definitions to create diagrams dynamically. The diagram uses color-coding to identify component types and connection types.
+1. **Increased Usable Capacity**: The 230Ah lithium battery provides ~200Ah of usable power (90% DoD), effectively doubling the ~100Ah usable capacity of the previous 200Ah AGM battery (50% DoD).
+
+2. **Extended Battery Life**: LiFePO4 batteries typically last 2000+ cycles compared to 300-500 cycles for AGM batteries, significantly reducing replacement frequency.
+
+3. **Weight Reduction**: The lithium battery weighs approximately 60 lbs, compared to 240 lbs for the two AGM batteries it replaced, improving vessel performance.
+
+4. **Enhanced Monitoring**: SmartShunt monitors provide real-time tracking of battery state and health, enabling better power management.
+
+5. **AC Power Availability**: The 1200W inverter provides AC power when away from shore power, improving comfort and functionality when cruising.
+
+## System Comparison
+
+| Feature | 2024 System (AGM) | 2025 System (LiFePO4) |
+|---------|------------------|------------------------|
+| House Battery | Two West Marine Group 4D (198Ah each) | LiTime 12V 230Ah LiFePO4 |
+| Usable Capacity | ~99Ah (50% DoD) | ~200Ah (90% DoD) |
+| Total Weight | ~240 lbs | ~60 lbs |
+| Battery Cost | $1,780 (2 x $890) | $430 |
+| Charging | Xantrax 20A Charger | Victron MultiPlus 50A + DC-DC Charger |
+| Monitoring | Basic voltage monitoring | SmartShunt detailed monitoring |
+| AC Power | Shore power only | Inverter (1200W) + Shore power |
+| Expected Life | 3-5 years | 8-10+ years |
+| Battery Management | Manual (1/2/Both switch) | Automated with protection circuits |
+| Standards | Marine rated | Meets ABYC E-13 Standard |
+
+## Conclusion
+
+The 2025 electrical system upgrade represents a significant improvement in Grace's power capabilities. By adopting lithium battery technology, adding comprehensive monitoring, and incorporating inverter functionality, the vessel now enjoys longer battery life, increased usable capacity, better power management, and AC power availability when away from shore power.
+
+These improvements enhance both the functionality and comfort of the vessel during extended cruising, while also providing long-term cost benefits through reduced maintenance and fewer battery replacements.
