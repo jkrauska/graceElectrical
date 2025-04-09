@@ -57,6 +57,14 @@ In-depth analysis of the battery selection process, including:
 - Cost analysis and long-term benefits
 - Implementation considerations
 
+### [Wiring Sizing Cheatsheet](./wiring-sizing-cheatsheet.md)
+Reference guide for marine electrical wiring, including:
+- Wire gauge sizes and current ratings
+- Cross-sectional area measurements
+- Voltage drop considerations
+- Length and temperature adjustments
+- ABYC standards and practical tips
+
 ## Key Improvements
 
 The 2025 electrical system upgrade delivered several significant improvements:
@@ -79,8 +87,9 @@ The 2025 electrical system upgrade delivered several significant improvements:
 | Usable Capacity | ~99Ah (50% DoD) | ~200Ah (90% DoD) |
 | Total Weight | ~240 lbs | ~60 lbs |
 | Battery Cost | $1,780 (2 x $890) | $430 |
-| Charging | Xantrax 20A Charger | Victron MultiPlus 50A + DC-DC Charger |
-| Monitoring | Basic voltage monitoring | SmartShunt detailed monitoring |
+| Charging | Xantrax 20A Charger | Victron MultiPlus 12/1200/50-16 |
+| Inverter | None | Victron MultiPlus 1200VA Pure Sine Wave ($480) |
+| Monitoring | Basic voltage monitoring | Victron SmartShunt IP65 300A ($72 each) |
 | AC Power | Shore power only | Inverter (1200W) + Shore power |
 | Expected Life | 3-5 years | 8-10+ years |
 | Battery Management | Manual (1/2/Both switch) | Automated with protection circuits |
