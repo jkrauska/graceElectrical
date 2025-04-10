@@ -72,29 +72,48 @@ graph LR
   end
   
   %% House battery wiring flow with gauges and colors (positive connections)
-  house_battery -->|2/0 AWG| main_fuse  %% LinkStyle 0 (red)
-  main_fuse -->|"Link Bar"| disconnect_switch  %% LinkStyle 1 (red)
-  disconnect_switch -->|"Link Bar"| positive_bus  %% LinkStyle 2 (red)
-  positive_bus -->|AWG ?| windlass  %% LinkStyle 3 (red)
-  positive_bus -->|AWG ?| dc_panel  %% LinkStyle 4 (red)
-  positive_bus ---|AWG 1| inverter_charger  %% LinkStyle 5 (red)
+  %% LinkStyle 0 (red)
+  house_battery -->|2/0 AWG| main_fuse
+  %% LinkStyle 1 (red)
+  main_fuse -->|"Link Bar"| disconnect_switch
+  %% LinkStyle 2 (red)
+  disconnect_switch -->|"Link Bar"| positive_bus
+  %% LinkStyle 3 (red)
+  positive_bus -->|AWG ?| windlass
+  %% LinkStyle 4 (red)
+  positive_bus -->|AWG ?| dc_panel
+  %% LinkStyle 5 (red)
+  positive_bus ---|AWG 1| inverter_charger
   
   %% Starter battery and DC-DC charger connections
-  starter_battery -->|"AWG ?"| alternator  %% LinkStyle 6 (red)
-  starter_battery ---|AWG 6?| dc_dc_charger  %% LinkStyle 7 (red)
-  starter_battery ---|AWG 12 Trickle | inverter_charger  %% LinkStyle 8 (red)
-  dc_dc_charger -->|AWG 6?| positive_bus  %% LinkStyle 9 (red)
+  %% LinkStyle 6 (red)
+  starter_battery -->|"AWG ?"| alternator
+  %% LinkStyle 7 (red)
+  starter_battery ---|AWG 6?| dc_dc_charger
+  %% LinkStyle 8 (red)
+  starter_battery ---|AWG 12 Trickle | inverter_charger
+  %% LinkStyle 9 (red)
+  dc_dc_charger -->|AWG 6?| positive_bus
   
   %% Ground connections (dotted lines in blue for better visibility)
-  house_battery -.-> house_shunt  %% LinkStyle 10 (blue dotted)
-  starter_battery -.-> starter_shunt  %% LinkStyle 11 (blue dotted)
-  house_shunt -.->|Ground| negative_bus  %% LinkStyle 12 (blue dotted)
-  starter_shunt -.->|Ground| negative_bus  %% LinkStyle 13 (blue dotted)
-  alternator -.->|Ground| negative_bus  %% LinkStyle 14 (blue dotted)
-  inverter_charger -.->|Ground| negative_bus  %% LinkStyle 15 (blue dotted)
-  windlass -.->|Ground| negative_bus  %% LinkStyle 16 (blue dotted)
-  dc_panel -.->|Ground| negative_bus  %% LinkStyle 17 (blue dotted)
-  dc_dc_charger -.->|Ground| negative_bus  %% LinkStyle 18 (blue dotted)
+  %% LinkStyle 10 (blue dotted)
+  house_battery -.-> house_shunt
+  %% LinkStyle 11 (blue dotted)
+  starter_battery -.-> starter_shunt
+  %% LinkStyle 12 (blue dotted)
+  house_shunt -.->|Ground| negative_bus
+  %% LinkStyle 13 (blue dotted)
+  starter_shunt -.->|Ground| negative_bus
+  %% LinkStyle 14 (blue dotted)
+  alternator -.->|Ground| negative_bus
+  %% LinkStyle 15 (blue dotted)
+  inverter_charger -.->|Ground| negative_bus
+  %% LinkStyle 16 (blue dotted)
+  windlass -.->|Ground| negative_bus
+  %% LinkStyle 17 (blue dotted)
+  dc_panel -.->|Ground| negative_bus
+  %% LinkStyle 18 (blue dotted)
+  dc_dc_charger -.->|Ground| negative_bus
 
   %% Styling for positive and negative connections
   %% Red
