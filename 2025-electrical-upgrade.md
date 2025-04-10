@@ -273,9 +273,17 @@ During the planning and implementation of the 2025 electrical system upgrade, se
 - Currently using previous 4D AGM battery
 - Future plan to replace with smaller Optima 34M BlueTOP 800 CCA starter
 
+### DC-DC Charger Options
+- Smaller amperage Victron Orion-TR series chargers were considered
+- 20A would probably be sufficient for most charging needs
+- Chose the newer XS series (50A) for better efficiency and improved monitoring capabilities
+- XS series provides more headroom for faster charging when needed
+
 ### Solar Charging
 - Option to add solar charging capability to support longer trips
 - Not implemented in the initial upgrade but considered for future expansion
+- Uncertainty about whether solar should charge house or starter battery
+- Probably best to charge house battery when anchored ("on the hook")
 
 ### Dual Lithium House Bank
 - Originally planned to do a like-for-like AH swap out at 200AH and support a dual battery bank
