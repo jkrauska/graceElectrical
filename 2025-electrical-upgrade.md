@@ -18,32 +18,29 @@ The 2025 electrical system upgrade replaced the traditional AGM batteries with m
     'tertiaryColor': '#ffffff'
   }
 }}%%
-graph TD
-  %% Define color constants (for documentation, not directly used)
-  %% powerSourceColor: #d4f1f9
-  %% protectionColor: #ffe6cc
-  %% distributionColor: #f8cecc
-  %% conversionColor: #d5e8d4
-  %% loadColor: #e1d5e7
-  %% monitorColor: #f5f5f5
-  %% noteColor: #fffde7
-  %% positiveLineColor: #ff0000
-  %% negativeLineColor: #0066cc
+graph LR
 
   %% Define nodes with descriptive identifiers and detailed labels
-  house_battery["House Battery<br>LiTime 12V 230Ah LiFePO4"]
+  house_battery["House Battery<br>LiTime<br>12.8V 230Ah<br>LiFePO4"]
+  starter_battery["Starter Battery<br>West Marine<br>12V 1000 CCA<br>AGM"]
+
   main_fuse["Class T Fuse 200A<br>Overcurrent Protection"]
-  disconnect_switch["Main Disconnect Switch<br>Emergency Cutoff"]
+  disconnect_switch["House Disconnect Switch<br>Emergency Cutoff"]
+
   positive_bus["Positive Bus Bar<br>Power Distribution"]
+  negative_bus["Negative Bus Bar<br>Ground Return"]
+
+
   inverter_charger["Inverter/Charger<br>Victron Energy MultiPlus<br>12/1200/50-16 120V"]
+  dc_dc_charger["DC-DC Charger<br>Victron Orion XS Smart<br>12/12 50A (700W)<br>Charges House"]
+  alternator["Engine Starter/Alternator<br>Hitachi 129772-77200 55A<br>(stock)"]
+
+
   windlass["Windlass<br>Anchor System"]
   dc_panel["DC Panel<br>Circuit Distribution"]
-  dc_dc_charger["DC-DC Charger<br>Victron Orion XS Smart<br>12/12 50A (700W)"]
-  negative_bus["Negative Bus Bar<br>Ground Return"]
-  starter_battery["Starter Battery<br>12V AGM 1000 CCA"]
-  alternator["Engine Starter/Alternator<br>Hitachi 129772-77200 55A"]
-  house_shunt["DC SmartShunt<br>Victron SmartShunt IP65 300A"]
-  starter_shunt["DC SmartShunt<br>Victron SmartShunt IP65 300A"]
+  
+  house_shunt["SmartShunt<br>Victron IP65 300A"]
+  starter_shunt["SmartShunt<br>Victron IP65 300A"]
   
   %% Style nodes using direct color values
   style house_battery fill:#d4f1f9,stroke:#333
@@ -60,53 +57,52 @@ graph TD
   style alternator fill:#d4f1f9,stroke:#333
   style starter_shunt fill:#f5f5f5,stroke:#333
 
-  %% House battery wiring flow with gauges and colors (positive connections)
-  house_battery -->|2/0 AWG| main_fuse
-  main_fuse -->|"Link Bar"| disconnect_switch
-  disconnect_switch -->|"Link Bar"| positive_bus
-  positive_bus -->|AWG 1| inverter_charger
-  positive_bus -->|AWG ?| windlass
-  positive_bus -->|AWG ?| dc_panel
+  %% Create subgraphs to control layout
+  subgraph Batteries 
+    direction TB
+    house_battery
+    starter_battery
+  end
   
-  %% Starter battery and alternator connections
-  alternator -->|AWG ?| starter_battery
-  starter_battery -->|AWG ?| dc_dc_charger
-  dc_dc_charger -->|AWG ?| positive_bus
+  subgraph DC_Distribution
+    direction TB
+    windlass
+    dc_panel
+    inverter_charger
+  end
+  
+  %% House battery wiring flow with gauges and colors (positive connections)
+  house_battery -->|2/0 AWG| main_fuse  %% LinkStyle 0 (red)
+  main_fuse -->|"Link Bar"| disconnect_switch  %% LinkStyle 1 (red)
+  disconnect_switch -->|"Link Bar"| positive_bus  %% LinkStyle 2 (red)
+  positive_bus -->|AWG ?| windlass  %% LinkStyle 3 (red)
+  positive_bus -->|AWG ?| dc_panel  %% LinkStyle 4 (red)
+  positive_bus ---|AWG 1| inverter_charger  %% LinkStyle 5 (red)
+  
+  %% Starter battery and DC-DC charger connections
+  starter_battery -->|"AWG ?"| alternator  %% LinkStyle 6 (red)
+  starter_battery ---|AWG 6?| dc_dc_charger  %% LinkStyle 7 (red)
+  starter_battery ---|AWG 12 Trickle | inverter_charger  %% LinkStyle 8 (red)
+  dc_dc_charger -->|AWG 6?| positive_bus  %% LinkStyle 9 (red)
   
   %% Ground connections (dotted lines in blue for better visibility)
-  house_battery -.->|Ground| house_shunt
-  house_shunt -.->|Ground| negative_bus
-  starter_battery -.->|Ground| starter_shunt
-  starter_shunt -.->|Ground| negative_bus
-  alternator -.->|Ground| negative_bus
-  inverter_charger -.->|Ground| negative_bus
-  windlass -.->|Ground| negative_bus
-  dc_panel -.->|Ground| negative_bus
-  dc_dc_charger -.->|Ground| negative_bus
-
-  %% Add explanatory notes
-  note_inverter["Converts 12V DC<br>to 120V AC power<br>1200W capacity"]
-  note_dc_dc["Charges LiFePO4 house <br>via alternator with current limiting"]
-  note_alternator["Charges batteries<br>when running"]
-  
-  style note_inverter fill:#fffde7,stroke:#d6d6d6
-  style note_dc_dc fill:#fffde7,stroke:#d6d6d6
-  style note_alternator fill:#fffde7,stroke:#d6d6d6
-  
-  inverter_charger --- note_inverter
-  dc_dc_charger --- note_dc_dc
-  alternator --- note_alternator
-
-  %% Title with background to ensure visibility in dark mode
-  title["Grace's 2025 Electrical System Upgrade<br>LiFePO4 Battery Installation"]
-  style title fill:#f0f0f0,stroke:#333,color:#000000,font-size:18px,font-weight:bold
-  title --- house_battery
+  house_battery -.-> house_shunt  %% LinkStyle 10 (blue dotted)
+  starter_battery -.-> starter_shunt  %% LinkStyle 11 (blue dotted)
+  house_shunt -.->|Ground| negative_bus  %% LinkStyle 12 (blue dotted)
+  starter_shunt -.->|Ground| negative_bus  %% LinkStyle 13 (blue dotted)
+  alternator -.->|Ground| negative_bus  %% LinkStyle 14 (blue dotted)
+  inverter_charger -.->|Ground| negative_bus  %% LinkStyle 15 (blue dotted)
+  windlass -.->|Ground| negative_bus  %% LinkStyle 16 (blue dotted)
+  dc_panel -.->|Ground| negative_bus  %% LinkStyle 17 (blue dotted)
+  dc_dc_charger -.->|Ground| negative_bus  %% LinkStyle 18 (blue dotted)
 
   %% Styling for positive and negative connections
-  linkStyle 0,1,2,3,4,5,6,7,8 stroke:#ff0000,stroke-width:2px
-  linkStyle 9,10,11,12,13,14,15,16,17 stroke:#0066cc,stroke-width:2.5px,stroke-dasharray:3
-  linkStyle 18,19,20 stroke:#d6d6d6,stroke-width:1px
-  linkStyle 21 stroke:#d6d6d6,stroke-width:1px
+  %% Red
+  linkStyle 0,1,2,3,4,5,6,7,8,9 stroke:#ff0000,stroke-width:3px
+  %% Orange dual direction
+  linkStyle 0,1,2,5,6 stroke:#FFA500,stroke-width:3px
+  %% Blue dotted
+  linkStyle 10,11,12,13,14,15,16,17,18 stroke:#0066cc,stroke-width:2.5px,stroke-dasharray:3
 
 ```
 
@@ -149,6 +145,7 @@ The 2025 electrical system upgrade was motivated by several factors:
 - **Victron Energy MultiPlus Pure Sine Wave Inverter Charger, UL-Certified, 12/1200/50-16 120V VE.Bus**: Inverter/charger converting 12V DC to 120V AC (1000W)
   - Provides 120V AC power from the house battery
   - Charges the house battery when connected to shore power
+  - Provides 1A trickle charge to starter battery
   - 50A charging capability
   - Cost (April 2025): $480
   - [Specifications datasheet](./specs/MultiPlus-500-1200VA-120V-EN.pdf) (Source: [Victron Energy](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-500-1200VA-120V-EN.pdf))
@@ -192,7 +189,8 @@ The 2025 electrical system upgrade was motivated by several factors:
 - Both batteries provide power to their respective systems
 
 ### When Connected to Shore Power
-- Inverter/charger charges the house battery
+- Inverter/charger charges the house battery at 50A
+- Inverter/charger provides a 1A trickle charge to the starter battery via 14 AWG wire
 - AC power is provided directly from shore power
 - DC systems continue to run from the house battery
 
@@ -201,6 +199,7 @@ The 2025 electrical system upgrade was motivated by several factors:
   - 2/0 AWG: House battery to fuse
   - Link Bar: Fuse to disconnect switch to positive bus bar
   - AWG 1: Positive bus bar to inverter
+  - AWG 12: Inverter to starter battery (1A trickle charge)
   
 - **Negative/Ground Connections**:
   - All components connect to the negative bus bar for a common ground
@@ -230,6 +229,39 @@ The 2025 electrical system upgrade was motivated by several factors:
 ### Weight Reduction
 - Lithium battery weighs approximately half as much as the equivalent AGM battery
 - Reduced weight improves vessel performance and fuel efficiency
+
+## Alternatives Considered
+
+During the planning and implementation of the 2025 electrical system upgrade, several alternative approaches were considered:
+
+### Higher Capacity Inverter/Charger
+- 2000VA Charger/Inverter was considered based on other C320 installations
+- Would require much larger gauge cabling for the inverter function
+- Doubling up wiring was deemed not ideal
+- High wattage loads (hair dryer, electric cooking) are unlikely to be needed
+- The 1200VA model provided sufficient capacity while allowing for more manageable wiring
+
+### Charger Placement
+- Some installations place inverter/chargers closer to batteries to shorten DC runs
+- This approach requires longer AC runs
+- Decision to keep shore charger far from batteries due to ventilation concerns
+- Current placement re-uses the "stock" location for the charger, making it more obvious for future owners
+- This placement balances wire gauge requirements with easy ventilation
+
+### Starter Battery Options
+- Lithium starter battery was considered
+- Would require new alternator with external regulation and protection
+- Currently using previous 4D AGM battery
+- Future plan to replace with smaller Optima 34M BlueTOP 800 CCA starter
+
+### Solar Charging
+- Option to add solar charging capability to support longer trips
+- Not implemented in the initial upgrade but considered for future expansion
+
+### Dual Lithium House Bank
+- Originally planned to do a like-for-like AH swap out at 200AH and support a dual battery bank
+- This would quadruple capacity and require getting a new smaller starter battery
+- Opted for single larger lithium bank in the current implementation
 
 ## Conclusion
 The 2025 electrical system upgrade significantly improved Grace's power capabilities through the adoption of lithium battery technology, enhanced monitoring, and the addition of inverter functionality. These improvements provide longer battery life, increased usable capacity, better monitoring, and AC power availability when away from shore power.
