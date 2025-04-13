@@ -87,11 +87,11 @@ graph LR
   
   %% Starter battery and DC-DC charger connections
   %% LinkStyle 6 (red)
-  starter_battery -->|"AWG ?"| alternator
+  starter_battery -->|"AWG 1/0"| alternator
   %% LinkStyle 7 (red)
   starter_battery ---|AWG 6?| dc_dc_charger
   %% LinkStyle 8 (red)
-  starter_battery ---|AWG 12 Trickle | inverter_charger
+  starter_battery ---|AWG 14 - Trickle | inverter_charger
   %% LinkStyle 9 (red)
   dc_dc_charger -->|AWG 6?| positive_bus
   
